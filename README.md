@@ -24,12 +24,6 @@ The project includes `hotel_booking_raw.xlsx`, organized into four sheets:
 
 The data is generated practice data. Figures below are the values displayed in the supplied dashboard and should be interpreted as illustrative.
 
-## Data cleaning
-
-The supplied workbook is arranged as a booking fact table and three descriptive tables for hotels, room types, and guests. This structure supports analysis by booking, hotel, room type, and guest attributes.
-
-The project files do not document specific cleaning steps such as duplicate removal, missing-value handling, or outlier treatment. Those steps should be confirmed and documented before treating the data model as fully validated. The dashboard also displays a blank payment-method category, which should be checked and either explained or handled explicitly.
-
 ## Dashboard pages
 
 1. **Landing Page**  report navigation.
