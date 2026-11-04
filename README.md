@@ -1,43 +1,75 @@
-# Hotel-Booking-Analysis-PowerBI
-Interactive Power BI dashboard analyzing hotel bookings, cancellations, and guests across Egypt
+# Egypt Hotel Booking Analytics
 
-An interactive Power BI dashboard analyzing about 9,000 bookings across 8 Egyptian hotels (January 2023 to February 2024): revenue, cancellations and no-shows, booking channels, guests, and booking behavior.
+## Small overview
 
-## Business question
-Where does the hotel group earn its revenue, and why are roughly 1 in 5 bookings lost to cancellations and no-shows?
+An interactive Power BI project exploring booking patterns, hotel revenue, cancellations, payment and booking channels, and guest behavior across a generated practice dataset representing hotels in Egypt. The dataset is for learning and demonstration; it does not describe real hotels or guests.
 
-## Tools
-Power BI, Power Query, DAX, star-schema data modeling
+## Business questions
+
+- How do bookings and revenue change over time?
+- Which hotels, cities, and room types contribute the most revenue?
+- What are the cancellation and no-show rates, and how do they vary by month, booking lead time, and channel?
+- Which booking channels and payment methods are associated with higher revenue or booking value?
+- How do guest country and loyalty tier relate to spending and hotel preferences?
+- When do guests check in, and how long do they stay?
 
 ## Data
-Dataset: generated for practice.
-- `fact_bookings`: 9,000 unique bookings (9,050 raw rows)
-- `dim_hotel`: 8 hotels with city, star rating, and rooms
-- `dim_room_type`: room types with base price and occupancy
-- `dim_guest`: 400 guests with country, loyalty tier, and signup date
+
+The project includes `hotel_booking_raw.xlsx`, organized into four sheets:
+
+- `fact_bookings` — 9,050 booking records, including booking and check-in dates, stay length, guest count, total amount, status, payment method, and booking channel
+- `dim_hotel` — 8 hotel records with city, star rating, and room capacity
+- `dim_room_type` — 44 room type records with hotel, room name, base price, and maximum occupancy
+- `dim_guest` — 400 guest records with country, loyalty tier, and signup date
+
+The data is generated practice data. Figures below are the values displayed in the supplied dashboard and should be interpreted as illustrative.
 
 ## Data cleaning
-- Removed blank rows, duplicate rows (50 duplicate bookings), and rows with errors
-- Standardized text capitalization in every column
-- Standardized the date columns, which mixed several formats
-- Validated every primary key: each ID is unique, has no blanks, and matches between tables
+
+The supplied workbook is arranged as a booking fact table and three descriptive tables for hotels, room types, and guests. This structure supports analysis by booking, hotel, room type, and guest attributes.
+
+The project files do not document specific cleaning steps such as duplicate removal, missing-value handling, or outlier treatment. Those steps should be confirmed and documented before treating the data model as fully validated. The dashboard also displays a blank payment-method category, which should be checked and either explained or handled explicitly.
 
 ## Dashboard pages
-1. **Home:** revenue, bookings, average booking value, and lost revenue
-2. **Revenue and performance:** hotels, cities, and room types
-3. **Cancellations and no-shows:** where bookings are lost, including the effect of lead time
-4. **Channels and payments:** channel mix and payment methods
-5. **Guests:** countries, loyalty tiers, and spend per guest
-6. **Booking behavior:** lead time, length of stay, check-in days, and peak months
 
-## Key findings
-- About 22.5% of bookings were lost: 14.8% cancelled and 7.7% no-shows.
-- Cancellation rates were similar across channels (14.5% to 15.6%) and lead-time groups (14.6% to 15.4%), which suggests a property-wide issue rather than one channel.
+1. **Landing Page** — report navigation.
+2. **Home Page** — headline booking and revenue KPIs, average booking value, and monthly revenue trend.
+3. **Revenue and performance** — revenue by hotel, room type, and city, plus revenue per available room.
+4. **Cancellations and no-shows** — cancellation and no-show KPIs, monthly cancellation trend, cancellation by lead time, and by channel.
+5. **Channels and payments** — booking value and revenue comparisons by payment method and booking channel.
+6. **Guests** — top guests by revenue, revenue by loyalty tier, country and hotel-city preferences, and average spend by country.
+7. **Booking behavior** — stay length, lead time, check-in month, and check-in weekday patterns.
 
-## Recommendations
-1. Introduce deposits or partly non-refundable rates across all channels.
-2. Send reminders before check-in to reduce no-shows.
-3. Track cancellations hotel by hotel to find the biggest losses.
+## Detailed key findings
+
+- The Home Page displays **9,000 total bookings**, **2.67M revenue**, **515.91K lost revenue**, and an **average booking value of 384**.
+- Monthly revenue on the Home Page ranges from **257K in February** to **310K in October**. March is also high at **306K**.
+- The Cancellations and no-shows page displays a **14.8% cancellation rate** and a **7.7% no-show rate**. The monthly cancellation chart peaks at **16.0%** in February and September and reaches its low of **12.4%** in December.
+- Booking behavior KPIs show an **average stay of 3 nights**, a **median lead time of 30 days**, and an **average lead time of 29.86 days**. Wednesday has the most check-ins in the weekday chart (**1,042**).
+- The Guests page displays **400 unique guests**. Emily Müller is the top guest by realized revenue in the chart at about **12K**. Silver-tier guests account for the largest shown share of revenue (**32.02%**).
+- On the Revenue and performance page, the room-type chart shows **3.46M total revenue**. Executive Suites are the largest room-type segment at **1.12M (32.29%)**. Nile View Grand has the highest hotel revenue in the chart at about **357K**, narrowly ahead of Marina Bay Resort at **356K**.
+- The revenue-per-available-room chart ranks Desert Rose Inn highest at approximately **3,348**.
+- **The headline metrics do not currently reconcile:** the workbook has 9,050 booking rows while the Home Page shows 9,000 bookings, and the Home Page shows 2.67M revenue while the room-type chart totals 3.46M. These figures may use different filters or measure definitions; verify them before drawing conclusions.
+
+## Advanced recommendations
+
+- **Define and reconcile measures:** document whether revenue means booked, realized, or net revenue; specify treatment of cancelled and no-show bookings; reconcile booking counts against the source rows; and show the same definition wherever a KPI is reused.
+- **Build a cancellation risk view:** compare cancellation rates across lead-time bands, channels, month, hotel, and room type. If a prediction model is added later, evaluate it on a held-out time period and use its scores to guide review or reminder policies rather than treating predictions as certainty.
+- **Add operational context to revenue:** pair revenue per available room with occupancy, available rooms, and average daily rate. Use these together to distinguish high revenue from high utilization or higher pricing.
+- **Measure channel value after costs:** compare realized revenue, average booking value, cancellation rate, and acquisition or commission cost by channel. The current report does not show channel costs, so revenue alone cannot identify the most profitable channel.
+- **Improve guest segmentation:** compare repeat-booking rate and spend by country and loyalty tier, then test targeted offers on small groups. The supplied practice data supports demonstration only, not real customer targeting.
+- **Add data-quality checks:** validate keys and relationships between the four tables, check missing categories and dates, and add a refresh-time summary of row counts and rejected records.
+- **Clarify chart labels and units:** fix the payment chart whose axis says “Booking Channel” although the visual is titled “Average Booking Value by Payment Method”; show currency and time-period units consistently.
 
 ## Assumptions
-Completed and Confirmed bookings were treated as realized stays, and Cancelled and No-show bookings as lost. The data has no cost information, so the analysis covers revenue, not profit.
+
+- The workbook is a generated practice dataset, so all business findings are illustrative and should not be used to make decisions about real hotels or guests.
+- Dashboard values are transcribed from the supplied screenshots. The report's measure definitions, filters, and currency are not confirmed here.
+- The 9,050 booking rows are counted from the data workbook; the dashboard's 9,000 booking KPI may apply an undocumented filter or another definition.
+- The 2.67M Home Page revenue and 3.46M room-type chart total are treated as different displayed figures until their measures and filters are reconciled.
+- No causal relationship is inferred from the visual comparisons.
+
+## Tools
+
+- Microsoft Power BI Desktop (`.pbix` report)
+- Microsoft Excel (`.xlsx` source workbook)
