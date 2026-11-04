@@ -6,21 +6,21 @@ An interactive Power BI project exploring booking patterns, hotel revenue, cance
 
 ## Business questions
 
-- How do bookings and revenue change over time?
-- Which hotels, cities, and room types contribute the most revenue?
-- What are the cancellation and no-show rates, and how do they vary by month, booking lead time, and channel?
-- Which booking channels and payment methods are associated with higher revenue or booking value?
-- How do guest country and loyalty tier relate to spending and hotel preferences?
-- When do guests check in, and how long do they stay?
+ How do bookings and revenue change over time?
+ Which hotels, cities, and room types contribute the most revenue?
+ What are the cancellation and no-show rates, and how do they vary by month, booking lead time, and channel?
+ Which booking channels and payment methods are associated with higher revenue or booking value?
+ How do guest country and loyalty tier relate to spending and hotel preferences?
+ When do guests check in, and how long do they stay?
 
 ## Data
 
 The project includes `hotel_booking_raw.xlsx`, organized into four sheets:
 
-- `fact_bookings` — 9,050 booking records, including booking and check-in dates, stay length, guest count, total amount, status, payment method, and booking channel
-- `dim_hotel` — 8 hotel records with city, star rating, and room capacity
-- `dim_room_type` — 44 room type records with hotel, room name, base price, and maximum occupancy
-- `dim_guest` — 400 guest records with country, loyalty tier, and signup date
+ `fact_bookings`  9,050 booking records, including booking and check-in dates, stay length, guest count, total amount, status, payment method, and booking channel
+ `dim_hotel` 8 hotel records with city, star rating, and room capacity
+ `dim_room_type`  44 room type records with hotel, room name, base price, and maximum occupancy
+ `dim_guest`  400 guest records with country, loyalty tier, and signup date
 
 The data is generated practice data. Figures below are the values displayed in the supplied dashboard and should be interpreted as illustrative.
 
@@ -32,13 +32,13 @@ The project files do not document specific cleaning steps such as duplicate remo
 
 ## Dashboard pages
 
-1. **Landing Page** — report navigation.
-2. **Home Page** — headline booking and revenue KPIs, average booking value, and monthly revenue trend.
-3. **Revenue and performance** — revenue by hotel, room type, and city, plus revenue per available room.
-4. **Cancellations and no-shows** — cancellation and no-show KPIs, monthly cancellation trend, cancellation by lead time, and by channel.
-5. **Channels and payments** — booking value and revenue comparisons by payment method and booking channel.
-6. **Guests** — top guests by revenue, revenue by loyalty tier, country and hotel-city preferences, and average spend by country.
-7. **Booking behavior** — stay length, lead time, check-in month, and check-in weekday patterns.
+1. **Landing Page**  report navigation.
+2. **Home Page**  headline booking and revenue KPIs, average booking value, and monthly revenue trend.
+3. **Revenue and performance**  revenue by hotel, room type, and city, plus revenue per available room.
+4. **Cancellations and no-shows**  cancellation and no-show KPIs, monthly cancellation trend, cancellation by lead time, and by channel.
+5. **Channels and payments**  booking value and revenue comparisons by payment method and booking channel.
+6. **Guests**  top guests by revenue, revenue by loyalty tier, country and hotel-city preferences, and average spend by country.
+7. **Booking behavior**  stay length, lead time, check-in month, and check-in weekday patterns.
 
 ## Detailed key findings
 
@@ -53,23 +53,23 @@ The project files do not document specific cleaning steps such as duplicate remo
 
 ## Advanced recommendations
 
-- **Define and reconcile measures:** document whether revenue means booked, realized, or net revenue; specify treatment of cancelled and no-show bookings; reconcile booking counts against the source rows; and show the same definition wherever a KPI is reused.
-- **Build a cancellation risk view:** compare cancellation rates across lead-time bands, channels, month, hotel, and room type. If a prediction model is added later, evaluate it on a held-out time period and use its scores to guide review or reminder policies rather than treating predictions as certainty.
-- **Add operational context to revenue:** pair revenue per available room with occupancy, available rooms, and average daily rate. Use these together to distinguish high revenue from high utilization or higher pricing.
-- **Measure channel value after costs:** compare realized revenue, average booking value, cancellation rate, and acquisition or commission cost by channel. The current report does not show channel costs, so revenue alone cannot identify the most profitable channel.
-- **Improve guest segmentation:** compare repeat-booking rate and spend by country and loyalty tier, then test targeted offers on small groups. The supplied practice data supports demonstration only, not real customer targeting.
-- **Add data-quality checks:** validate keys and relationships between the four tables, check missing categories and dates, and add a refresh-time summary of row counts and rejected records.
-- **Clarify chart labels and units:** fix the payment chart whose axis says “Booking Channel” although the visual is titled “Average Booking Value by Payment Method”; show currency and time-period units consistently.
+ **Define and reconcile measures:** document whether revenue means booked, realized, or net revenue; specify treatment of cancelled and no-show bookings; reconcile booking counts against the source rows; and show the same definition wherever a KPI is reused.
+ **Build a cancellation risk view:** compare cancellation rates across lead-time bands, channels, month, hotel, and room type. If a prediction model is added later, evaluate it on a held-out time period and use its scores to guide review or reminder policies rather than treating predictions as certainty.
+ **Add operational context to revenue:** pair revenue per available room with occupancy, available rooms, and average daily rate. Use these together to distinguish high revenue from high utilization or higher pricing.
+ **Measure channel value after costs:** compare realized revenue, average booking value, cancellation rate, and acquisition or commission cost by channel. The current report does not show channel costs, so revenue alone cannot identify the most profitable channel.
+ **Improve guest segmentation:** compare repeat-booking rate and spend by country and loyalty tier, then test targeted offers on small groups. The supplied practice data supports demonstration only, not real customer targeting.
+ **Add data-quality checks:** validate keys and relationships between the four tables, check missing categories and dates, and add a refresh-time summary of row counts and rejected records.
+ **Clarify chart labels and units:** fix the payment chart whose axis says “Booking Channel” although the visual is titled “Average Booking Value by Payment Method”; show currency and time-period units consistently.
 
 ## Assumptions
 
-- The workbook is a generated practice dataset, so all business findings are illustrative and should not be used to make decisions about real hotels or guests.
-- Dashboard values are transcribed from the supplied screenshots. The report's measure definitions, filters, and currency are not confirmed here.
-- The 9,050 booking rows are counted from the data workbook; the dashboard's 9,000 booking KPI may apply an undocumented filter or another definition.
-- The 2.67M Home Page revenue and 3.46M room-type chart total are treated as different displayed figures until their measures and filters are reconciled.
-- No causal relationship is inferred from the visual comparisons.
+ The workbook is a generated practice dataset, so all business findings are illustrative and should not be used to make decisions about real hotels or guests.
+ Dashboard values are transcribed from the supplied screenshots. The report's measure definitions, filters, and currency are not confirmed here.
+ The 9,050 booking rows are counted from the data workbook; the dashboard's 9,000 booking KPI may apply an undocumented filter or another definition.
+ The 2.67M Home Page revenue and 3.46M room-type chart total are treated as different displayed figures until their measures and filters are reconciled.
+ No causal relationship is inferred from the visual comparisons.
 
 ## Tools
 
-- Microsoft Power BI Desktop (`.pbix` report)
-- Microsoft Excel (`.xlsx` source workbook)
+ Microsoft Power BI Desktop (`.pbix` report)
+ Microsoft Excel (`.xlsx` source workbook)
