@@ -61,14 +61,6 @@ The project files do not document specific cleaning steps such as duplicate remo
  **Add data-quality checks:** validate keys and relationships between the four tables, check missing categories and dates, and add a refresh-time summary of row counts and rejected records.
  **Clarify chart labels and units:** fix the payment chart whose axis says “Booking Channel” although the visual is titled “Average Booking Value by Payment Method”; show currency and time-period units consistently.
 
-## Assumptions
-
- The workbook is a generated practice dataset, so all business findings are illustrative and should not be used to make decisions about real hotels or guests.
- Dashboard values are transcribed from the supplied screenshots. The report's measure definitions, filters, and currency are not confirmed here.
- The 9,050 booking rows are counted from the data workbook; the dashboard's 9,000 booking KPI may apply an undocumented filter or another definition.
- The 2.67M Home Page revenue and 3.46M room-type chart total are treated as different displayed figures until their measures and filters are reconciled.
- No causal relationship is inferred from the visual comparisons.
-
 ## Tools
 
  Microsoft Power BI Desktop (`.pbix` report)
